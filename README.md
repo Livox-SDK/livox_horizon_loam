@@ -42,15 +42,15 @@ Connect to your PC to Livox LiDAR (horizon) by following  [Livox-ros-driver inst
 
 ## 4. Rosbag Example
 ### 4.1. **Common rosbag**
-Download [Our recorded rosbag](,,,) and then
+Download [Our recorded rosbag](https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/demo/parking_lot.bag) and then
 ```
 roslaunch loam_horizon loam_livox_horizon.launch
 rosbag play YOUR_DOWNLOADED.bag
 ```
 
 
-### 4.1. **Combined with imu rosbag**
-
+### 4.2. **Combined with imu rosbag**
+Download [Our recorded rosbag](https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/demo/imu-demo.bag) and then
 ```
 roslaunch loam_horizon loam_livox_horizon_imu.launch
 rosbag play YOUR_DOWNLOADED.bag
