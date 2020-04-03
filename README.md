@@ -39,6 +39,16 @@ Connect to your PC to Livox LiDAR (horizon) by following  [Livox-ros-driver inst
     roslaunch loam_horizon loam_livox_horizon.launch
     
 ```
+if you want to use the inner imu of horizon, please modify the line [24](https://github.com/Livox-SDK/livox_horizon_loam/blob/ebc13adbfa95d63cc6b27bbe73f2ed3170e68078/launch/loam_livox_horizon_imu.launch#L24) of file loam_livox_horizon_imu.launch as follows:
+```
+     <node pkg="loam_horizon" type="imu_process" name="imu_process" output="screen" >
+        <remap from="/imu" to="/livox/imu"/>
+     </node>
+```
+then
+```
+    roslaunch loam_horizon loam_livox_horizon_imu.launch
+```
 
 ## 4. Rosbag Example
 ### 4.1. **Common rosbag**
