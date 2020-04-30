@@ -119,7 +119,7 @@ void TransformToStart(PointType const *const pi, PointType *const po) {
   // interpolation ratio
   double s;
   if (DISTORTION)
-    s = (pi->intensity - int(pi->intensity)) / SCAN_PERIOD;
+    s = (pi->intensity - int(pi->intensity))*10;
   else
     s = 1.0;
   // s = 1;
@@ -349,9 +349,7 @@ int main(int argc, char **argv) {
 
                 double s;
                 if (DISTORTION)
-                  s = (cornerPointsSharp->points[i].intensity -
-                       int(cornerPointsSharp->points[i].intensity)) /
-                      SCAN_PERIOD;
+                  s = (cornerPointsSharp->points[i].intensity - int(cornerPointsSharp->points[i].intensity))*10;
                 else
                   s = 1.0;
 
@@ -422,9 +420,7 @@ int main(int argc, char **argv) {
 
                 double s;
                 if (DISTORTION)
-                  s = (surfPointsFlat->points[i].intensity -
-                       int(surfPointsFlat->points[i].intensity)) /
-                      SCAN_PERIOD;
+                  s = (surfPointsFlat->points[i].intensity - int(surfPointsFlat->points[i].intensity))*10;
                 else
                   s = 1.0;
                 // printf(" Plane s------ %f  \n", s);
@@ -460,6 +456,7 @@ int main(int argc, char **argv) {
 
         t_w_curr = t_w_curr + q_w_curr * t_last_curr;
         q_w_curr = q_w_curr * q_last_curr;
+        std::cout<<"t_w_curr: "<<t_w_curr.transpose()<<std::endl;
       }
 
       TicToc t_pub;
@@ -487,7 +484,7 @@ int main(int argc, char **argv) {
       pubLaserPath.publish(laserPath);
 
       // transform corner features and plane features to the scan end point
-      if (0) {
+      if (DISTORTION) {
         int cornerPointsLessSharpNum = cornerPointsLessSharp->points.size();
         for (int i = 0; i < cornerPointsLessSharpNum; i++) {
           TransformToEnd(&cornerPointsLessSharp->points[i],

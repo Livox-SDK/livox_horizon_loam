@@ -20,7 +20,7 @@ pcl::PointCloud<pcl::PointXYZINormal>::Ptr laserCloudtmp(
 
 ImuProcess::ImuProcess()
     : b_first_frame_(true), last_lidar_(nullptr), last_imu_(nullptr) {
-  Eigen::Quaterniond q(0, 1, 0, 0);
+  Eigen::Quaterniond q(1, 0, 0, 0);
   Eigen::Vector3d t(0, 0, 0);
   T_i_l = Sophus::SE3d(q, t);
 }

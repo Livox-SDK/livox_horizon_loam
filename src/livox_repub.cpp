@@ -14,19 +14,18 @@ void LivoxMsgCbk1(const livox_ros_driver::CustomMsgConstPtr& livox_msg_in) {
   pcl::PointCloud<PointType> pcl_in;
 
   for (size_t j = 0; j < livox_data.size(); j++) {
-    double dt = (livox_data[j]->timebase - livox_data[0]->timebase) * 1e-9; // convert nSec to Sec
-
-    auto livox_msg = livox_data[j];
+    auto& livox_msg = livox_data[j];
+    auto time_end = livox_msg->points.back().offset_time;
     for (unsigned int i = 0; i < livox_msg->point_num; ++i) {
       PointType pt;
       pt.x = livox_msg->points[i].x;
       pt.y = livox_msg->points[i].y;
       pt.z = livox_msg->points[i].z;
 //      if (pt.z < -0.3) continue; // delete some outliers (our Horizon's assembly height is 0.3 meters)
-      uint32_t offset_time_ns = livox_msg->points[i].offset_time;
-      double offset_time_s = dt + offset_time_ns * 1e-9;
-      // ROS_INFO("offset_time_s-------- %.3f ",offset_time_s);
-      pt.intensity = livox_msg->points[i].line + offset_time_s; // The integer part is line number and the decimal part is timestamp
+      float s = livox_msg->points[i].offset_time / (float)time_end;
+//       ROS_INFO("_s-------- %.6f ",s);
+      pt.intensity = livox_msg->points[i].line + s*0.1; // The integer part is line number and the decimal part is timestamp
+//      ROS_INFO("intensity-------- %.6f ",pt.intensity);
       pt.curvature = livox_msg->points[i].reflectivity * 0.1;
       // ROS_INFO("pt.curvature-------- %.3f ",pt.curvature);
       pcl_in.push_back(pt);
