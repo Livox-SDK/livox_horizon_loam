@@ -1,4 +1,4 @@
-# LOAM-Horizon
+# Livox-Horizon-LOAM
 ## LiDAR Odemetry and Mapping (LOAM) package for Livox Horizon LiDAR
 ![image](https://github.com/Livox-SDK/livox_horizon_loam/blob/master/rviz_cfg/fig/fig-1.png)
 **livox_horizon_loam** is a robust, low drift, and real time odometry and mapping package for [*Livox LiDARs*](https://www.livoxtech.com/), significant low cost and high performance LiDARs that are designed for massive industrials uses. Our package is **mainly designed for low-speed scenes(~5km/h)** and address many key issues: feature extraction and selection in a very limited FOV, and motion distortion compensation. We use [*Ceres-Solver*](http://ceres-solver.org/) for scan matching to avoid complicated differential geometry derivation. The codes are well structured and streamlined to improve readability and extendability.
@@ -20,7 +20,7 @@ Follow [Ceres Installation](http://ceres-solver.org/installation.html).
 ### 1.3. **PCL**
 Follow [PCL Installation](http://www.pointclouds.org/downloads/linux.html).
 
-### 1.3. **Eigen**
+### 1.4. **Eigen**
 Recommend version [3.3.7](http://eigen.tuxfamily.org/index.php?title=Main_Page).
 
 
@@ -49,7 +49,7 @@ If you want to use horizon's internal IMU to eliminate rotation distortion, run
 
 ## 4. Rosbag Example
 ### 4.1. **Common rosbag**
-Download [parking lot rosbag](https://waiting_for_update) or [outdoor scene rosbag](https://waiting_for_update) and then
+Download [parking lot rosbag](https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/demo/2020_parking_lot.bag) or [outdoor scene rosbag](https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/demo/2020_open_road.bag) and then
 ```
     roslaunch loam_horizon loam_livox_horizon.launch
     rosbag play YOUR_DOWNLOADED.bag
