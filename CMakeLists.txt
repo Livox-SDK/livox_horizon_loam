@@ -33,7 +33,7 @@ include_directories(
 
 
 catkin_package(
-  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp rospy std_msgs
+  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp rospy std_msgs livox_ros_driver
   DEPENDS EIGEN3 PCL 
   INCLUDE_DIRS include
 )
