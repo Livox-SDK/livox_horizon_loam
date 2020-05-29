@@ -148,6 +148,19 @@ int main(int argc, char **argv) {
 
   std::shared_ptr<ImuProcess> p_imu(new ImuProcess());
 
+  std::vector<double> vec;
+  if( nh.getParam("/ExtIL", vec) ){
+    Eigen::Quaternion<double> q_il;
+    Eigen::Vector3d t_il;
+    q_il.w() = vec[0];
+    q_il.x() = vec[1];
+    q_il.y() = vec[2];
+    q_il.z() = vec[3];
+    t_il << vec[4], vec[5], vec[6];
+    p_imu->set_T_i_l(q_il, t_il);
+    ROS_INFO("Extrinsic Parameter RESET ... ");
+  }
+
   /// for debug
   p_imu->nh = nh;
 

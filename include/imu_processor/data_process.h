@@ -30,6 +30,9 @@ class ImuProcess {
 
   void UndistortPcl(const PointCloudXYZI::Ptr &pcl_in_out, double dt_be,
                     const Sophus::SE3d &Tbe);
+  void set_T_i_l(Eigen::Quaterniond& q, Eigen::Vector3d& t){
+    T_i_l = Sophus::SE3d(q, t);
+  }
 
   ros::NodeHandle nh;
 
