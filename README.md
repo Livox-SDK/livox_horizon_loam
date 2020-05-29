@@ -23,6 +23,9 @@ Follow [PCL Installation](http://www.pointclouds.org/downloads/linux.html). Reco
 ### 1.4. **Eigen**
 Recommend version [3.3.7](http://eigen.tuxfamily.org/index.php?title=Main_Page).
 
+### 1.5. **livox_ros_driver**
+Follow the introduction [livox_ros_driver](https://github.com/Livox-SDK/livox_ros_driver).
+
 
 ## 2. Build
 Clone the repository and catkin_make:
@@ -70,9 +73,9 @@ When using IMU messages, check `rqt_graph`:
 ### 4.2. **External IMU rosbag**
 If you want to use an external IMU with horizon to eliminate rotation distortion, you need to manually obtain external parameters. For example, we record a rosbag containing external imu data and horizon data, and the extrinsic quaternion is (0, 1, 0, 0), then:
 1. Download [external imu rosbag](https://terra-1-g.djicdn.com/65c028cd298f4669a7f0e40e50ba1131/demo/imu-demo.bag).
-2. Modify the `ExtIL` rosparam in `loam_livox_horizon_ext_imu.launch` in order`[q.w, q.x, q.y, q.z, t.x, t.y, t.z]`:
+2. Modify the `ExtIL` rosparam in [`loam_livox_horizon_ext_imu.launch`](https://github.com/Livox-SDK/livox_horizon_loam/blob/b43494f0217839b849fb6752a6dea4bd79bd3bb4/launch/loam_livox_horizon_ext_imu.launch#L3) in order`[q.w, q.x, q.y, q.z, t.x, t.y, t.z]`:
 ```
-	 <rosparam param="ExtIL"> [0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0]</rosparam>
+    <rosparam param="ExtIL"> [0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0]</rosparam>
 ```
 3. Run
 ```
